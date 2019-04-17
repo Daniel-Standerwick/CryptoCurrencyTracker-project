@@ -12,3 +12,6 @@
 * User should be able to create a way to store favorites
 * UserPreference to check whether list all cryptos or just the favorites
 * Provide some way to switch between all cryptos and favorites
+
+### If you really want to impress ###
+* Incorporate Firebase in some fashion
