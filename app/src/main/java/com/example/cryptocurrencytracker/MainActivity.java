@@ -11,7 +11,6 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import java.lang.reflect.Array;
-import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,12 +18,14 @@ public class MainActivity extends AppCompatActivity {
     private EditText Symbol;
     private Resources res;
     public static String[] dataToDisplay;
+    public static String[][] organizedData;
     public static RecyclerView returnView;
     public static RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
 
     private String id;
     private String symbol;
+    private String name;
     private String image;
     private String currentPrice;
     private String marketCap;
@@ -66,7 +67,9 @@ public class MainActivity extends AppCompatActivity {
         Search.setOnClickListener (new View.OnClickListener ( ) {
             @Override
             public void onClick(View v) {
-                loadArray (dataToDisplay);
+                dataToDisplay = loadArray (dataToDisplay);
+                setmAdapter ();
+
             }
         });
 
@@ -79,13 +82,14 @@ public class MainActivity extends AppCompatActivity {
         returnView.setAdapter (mAdapter);
     }
 
-    public String[][] loadArray(String[] data)
+    public String[] loadArray(String[] data)
     {
-        String[][] toReturn;
+        String[] toReturn;
         String[] arrayToLoad;
 
         id = (String) getString (R.string.id);
         symbol = (String) getString (R.string.symbol);
+        name = (String) getString (R.string.name);
         image = (String) getString (R.string.image);
         currentPrice = (String) getString (R.string.current_price);
         marketCap = (String) getString (R.string.market_cap);
@@ -109,7 +113,9 @@ public class MainActivity extends AppCompatActivity {
                                marketCapChangePercentage24h, circulatingSupply, totalSupply,
                                ath, athChangePercentage, athDate, roi, lastUpdated};
 
-        toReturn = new String[data.length][arrayToLoad.length];
+
+        organizedData = new String[data.length][arrayToLoad.length];
+        toReturn = new String[data.length];
         String coinInfo;
         for(int i = 0; i < data.length; i++)
         {
@@ -119,12 +125,15 @@ public class MainActivity extends AppCompatActivity {
                 int end;
                 if (coinInfo.contains (",")){
                     end = coinInfo.indexOf (",");
-                    toReturn[i][j] = coinInfo.substring (0, (end));
-                    coinInfo = coinInfo.substring (end+1, coinInfo.length ());
-                } else {toReturn[i][j] = coinInfo;}
+                    organizedData[i][j] = arrayToLoad[j] + " " +
+                            coinInfo.substring (0, (end));
+                    coinInfo = coinInfo.substring (end+1);
+
+                    toReturn[i] += organizedData [i][j] + "\n";
+
+                } else {organizedData[i][j] = coinInfo;}
             }
         }
-
 
 
         return toReturn;

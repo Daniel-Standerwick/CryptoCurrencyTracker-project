@@ -2,6 +2,7 @@
 <resources>
     <string name="id">id: </string>
     <string name="symbol">symbol: </string>
+    <string name="name">name: </string>
     <string name="image">image: </string>
     <string name="current_price">currentPrice: </string>
     <string name="market_cap">marketCap: </string>
