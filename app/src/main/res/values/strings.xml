@@ -12,5 +12,6 @@
     <string-array name="CryptoData" />
     <string-array name="FavorateData" />
     <array name="FavorateList" />
+    <string name="title_activity_details_about_acrypto">DetailsAboutACrypto</string>
 
 </resources>

@@ -64,11 +64,19 @@ public class MainActivity extends AppCompatActivity {
 
         AsyncJsonParsing data = new AsyncJsonParsing ();
         data.execute ();
+
+        try {
+            Thread.sleep (2000);
+            dataToDisplay = loadArray (dataToDisplay);
+            setmAdapter ();
+        } catch (InterruptedException e) {
+            e.printStackTrace ( );
+        }
+
+
         Search.setOnClickListener (new View.OnClickListener ( ) {
             @Override
             public void onClick(View v) {
-                dataToDisplay = loadArray (dataToDisplay);
-                setmAdapter ();
 
             }
         });
