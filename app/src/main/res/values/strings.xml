@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">CryptoCurrencyTracker</string>
+
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="type_symbol_here">Type Symbol Here</string>
+    <string name="search_for_info">Search For Info</string>
+
+
+    <string-array name="CryptoData" />
+    <string-array name="FavorateData" />
+    <array name="FavorateList" />
+
+</resources>
