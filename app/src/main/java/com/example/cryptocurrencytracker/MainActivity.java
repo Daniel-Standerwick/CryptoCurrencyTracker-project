@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import java.lang.reflect.Array;
+
 public class MainActivity extends AppCompatActivity {
 
     private Button Search;
@@ -74,8 +76,9 @@ public class MainActivity extends AppCompatActivity {
         returnView.setAdapter (mAdapter);
     }
 
-    public String[] loadArray(String[] arrayToLoad)
+    public String[][] loadArray(String[] arrayToLoad, String[] data)
     {
+        String[][] toReturn;
 
         id = (String) getString (R.string.id);
         symbol = (String) getString (R.string.symbol);
@@ -101,7 +104,13 @@ public class MainActivity extends AppCompatActivity {
                                priceChange24h, priceChangePercentage24h, marketCapChange24h,
                                marketCapChangePercentage24h, circulatingSupply, totalSupply,
                                ath, athChangePercentage, athDate, roi, lastUpdated};
-        return arrayToLoad;
+
+        toReturn = new String[(data.length/arrayToLoad.length)][arrayToLoad.length];
+
+
+
+
+        return toReturn;
     }
 
 
