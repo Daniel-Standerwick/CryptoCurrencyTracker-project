@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
         roi = (String) getString (R.string.roi);
         lastUpdated = (String) getString (R.string.last_updated);
 
-        arrayToLoad = new String[]{id, symbol, image, currentPrice, marketCap, marketCapRank, high24h, low24h,
+        arrayToLoad = new String[]{id, symbol, name, image,  currentPrice, marketCap, marketCapRank, high24h, low24h,
                                priceChange24h, priceChangePercentage24h, marketCapChange24h,
                                marketCapChangePercentage24h, circulatingSupply, totalSupply,
                                ath, athChangePercentage, athDate, roi, lastUpdated};
@@ -129,7 +129,9 @@ public class MainActivity extends AppCompatActivity {
                             coinInfo.substring (0, (end));
                     coinInfo = coinInfo.substring (end+1);
 
-                    toReturn[i] += organizedData [i][j] + "\n";
+                    if(j == 0){
+                        toReturn[i] = organizedData[i][j] + "\n";
+                    } else { toReturn[i] += organizedData [i][j] + "\n"; }
 
                 } else {organizedData[i][j] = coinInfo;}
             }
