@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         Search.setOnClickListener (new View.OnClickListener ( ) {
             @Override
             public void onClick(View v) {
-
+                loadArray (dataToDisplay);
             }
         });
 
@@ -79,9 +79,10 @@ public class MainActivity extends AppCompatActivity {
         returnView.setAdapter (mAdapter);
     }
 
-    public String[][] loadArray(String[] arrayToLoad, String[] data)
+    public String[][] loadArray(String[] data)
     {
         String[][] toReturn;
+        String[] arrayToLoad;
 
         id = (String) getString (R.string.id);
         symbol = (String) getString (R.string.symbol);
@@ -112,12 +113,15 @@ public class MainActivity extends AppCompatActivity {
         String coinInfo;
         for(int i = 0; i < data.length; i++)
         {
+            coinInfo = data[i];
             for(int j = 0; j < arrayToLoad.length; j++)
             {
-                if(data[i].contains (","))
-                {
-                    toReturn[i][j] = Arrays.toString (data[i].split (","));
-                }
+                int end;
+                if (coinInfo.contains (",")){
+                    end = coinInfo.indexOf (",");
+                    toReturn[i][j] = coinInfo.substring (0, (end));
+                    coinInfo = coinInfo.substring (end+1, coinInfo.length ());
+                } else {toReturn[i][j] = coinInfo;}
             }
         }
 
