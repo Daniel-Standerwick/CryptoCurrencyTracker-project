@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         dataToDisplay = res.getStringArray (R.array.CryptoData);
         returnView = (RecyclerView) findViewById (R.id.ReturnView);
 
-        returnView.setHasFixedSize (true);
+        returnView.setHasFixedSize (false);
         layoutManager = new LinearLayoutManager (this);
         returnView.setLayoutManager (layoutManager);
 
