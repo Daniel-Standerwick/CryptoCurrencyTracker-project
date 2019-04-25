@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import java.lang.reflect.Array;
+import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -60,13 +61,15 @@ public class MainActivity extends AppCompatActivity {
         returnView.setLayoutManager (layoutManager);
         //dataToDisplay = loadArray (dataToDisplay);
 
+        AsyncJsonParsing data = new AsyncJsonParsing ();
+        data.execute ();
         Search.setOnClickListener (new View.OnClickListener ( ) {
             @Override
             public void onClick(View v) {
-                AsyncJsonParsing data = new AsyncJsonParsing ();
-                data.execute ();
+
             }
         });
+
 
 
     }
@@ -105,8 +108,18 @@ public class MainActivity extends AppCompatActivity {
                                marketCapChangePercentage24h, circulatingSupply, totalSupply,
                                ath, athChangePercentage, athDate, roi, lastUpdated};
 
-        toReturn = new String[(data.length/arrayToLoad.length)][arrayToLoad.length];
-
+        toReturn = new String[data.length][arrayToLoad.length];
+        String coinInfo;
+        for(int i = 0; i < data.length; i++)
+        {
+            for(int j = 0; j < arrayToLoad.length; j++)
+            {
+                if(data[i].contains (","))
+                {
+                    toReturn[i][j] = Arrays.toString (data[i].split (","));
+                }
+            }
+        }
 
 
 
