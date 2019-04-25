@@ -1,10 +1,12 @@
 package com.example.cryptocurrencytracker;
 
+import android.annotation.SuppressLint;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -13,9 +15,9 @@ public class MainActivity extends AppCompatActivity {
     private Button Search;
     private EditText Symbol;
     private Resources res;
-    private String[] dataToDisplay;
-    private RecyclerView returnView;
-    private RecyclerView.Adapter mAdapter;
+    public static String[] dataToDisplay;
+    public static RecyclerView returnView;
+    public static RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
 
     private String id;
@@ -39,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private String lastUpdated;
 
 
+    @SuppressLint("WrongThread")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
@@ -53,11 +56,22 @@ public class MainActivity extends AppCompatActivity {
         returnView.setHasFixedSize (false);
         layoutManager = new LinearLayoutManager (this);
         returnView.setLayoutManager (layoutManager);
+        //dataToDisplay = loadArray (dataToDisplay);
 
-        dataToDisplay = loadArray (dataToDisplay);
+        Search.setOnClickListener (new View.OnClickListener ( ) {
+            @Override
+            public void onClick(View v) {
+                AsyncJsonParsing data = new AsyncJsonParsing ();
+                data.execute ();
+            }
+        });
+
+
+    }
+
+    public static void setmAdapter(){
         mAdapter = new MyAdapter(dataToDisplay);
         returnView.setAdapter (mAdapter);
-
     }
 
     public String[] loadArray(String[] arrayToLoad)

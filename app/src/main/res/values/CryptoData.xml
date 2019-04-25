@@ -1,22 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="id">id</string>
-    <string name="symbol">symbol</string>
-    <string name="image">image</string>
-    <string name="current_price">currentPrice</string>
-    <string name="market_cap">marketCap</string>
-    <string name="market_cap_rank">marketCapRank</string>
-    <string name="high_24h">high24h</string>
-    <string name="low_24h">low24h</string>
-    <string name="price_change_24h">price_change_24h</string>
-    <string name="price_change_percentage_24h">price_change_percentage_24h</string>
-    <string name="market_cap_change_24h">market_cap_change_24h</string>
-    <string name="market_cap_change_percentage_24h">market_cap_change_percentage_24h</string>
-    <string name="circulating_supply">circulating_supply</string>
-    <string name="total_supply">total_supply</string>
-    <string name="ath">ath</string>
-    <string name="ath_change_percentage">ath_change_percentage</string>
-    <string name="ath_date">ath_date</string>
-    <string name="roi">roi</string>
-    <string name="last_updated">last_updated</string>
+    <string name="id">id: </string>
+    <string name="symbol">symbol: </string>
+    <string name="image">image: </string>
+    <string name="current_price">currentPrice: </string>
+    <string name="market_cap">marketCap: </string>
+    <string name="market_cap_rank">marketCapRank: </string>
+    <string name="high_24h">high24h: </string>
+    <string name="low_24h">low24h: </string>
+    <string name="price_change_24h">price_change_24h: </string>
+    <string name="price_change_percentage_24h">price_change_percentage_24h: </string>
+    <string name="market_cap_change_24h">market_cap_change_24h: </string>
+    <string name="market_cap_change_percentage_24h">market_cap_change_percentage_24h: </string>
+    <string name="circulating_supply">circulating_supply: </string>
+    <string name="total_supply">total_supply: </string>
+    <string name="ath">ath: </string>
+    <string name="ath_change_percentage">ath_change_percentage: </string>
+    <string name="ath_date">ath_date: </string>
+    <string name="roi">roi: </string>
+    <string name="last_updated">last_updated: </string>
+
+
 </resources>

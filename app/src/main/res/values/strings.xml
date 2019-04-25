@@ -8,6 +8,7 @@
     <string name="search_for_info">Search For Info</string>
 
 
+    <array name="CryptoDataSet" />
     <string-array name="CryptoData" />
     <string-array name="FavorateData" />
     <array name="FavorateList" />
