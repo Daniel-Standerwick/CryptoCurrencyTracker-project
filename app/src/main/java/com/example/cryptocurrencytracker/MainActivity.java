@@ -1,24 +1,28 @@
 package com.example.cryptocurrencytracker;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-
-import java.lang.reflect.Array;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static Context context;
     private Bundle stringsToSend;
     private Button Search;
     private EditText Symbol;
     private Resources res;
+    public static String clickedSymbol;
     public static String[] dataToDisplay;
     public static String[][] organizedData;
     public static String[][] rawOrganizedData;
@@ -26,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     public static RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
 
-    private String typedSym;
+    private static String typedSym;
     private String id;
     private String symbol;
     private String name;
@@ -56,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_main);
+        MainActivity.context = getApplicationContext ();
 
         stringsToSend = new Bundle ();
 
@@ -89,8 +94,36 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
 
 
+    private String getSymbolAtLocation(int loc)
+    {
+        return rawOrganizedData[loc][1];
+    }
+
+    public static void touchSymbSearch(String s) {
+        typedSym = s;
+        for(int i = 0; i < dataToDisplay.length; i++) {
+            if (rawOrganizedData[i][1].equals (typedSym)) {
+                Intent symbSearch;
+                symbSearch = new Intent (context, DetailsAboutACrypto.class);
+                symbSearch.putExtra ("name",rawOrganizedData[i][2]);
+                symbSearch.putExtra ("currentPrice",organizedData[i][4]);
+                symbSearch.putExtra ("high24h",organizedData[i][7]);
+                symbSearch.putExtra ("ath",organizedData[i][15]);
+                symbSearch.putExtra ("athdate",organizedData[i][17]);
+                symbSearch.putExtra ("roi",organizedData[i][18]);
+                symbSearch.putExtra ("lastUpdated",organizedData[i][19]);
+                symbSearch.putExtra ("low24h",organizedData[i][8]);
+                symbSearch.putExtra ("priceChange24h",organizedData[i][9]);
+                symbSearch.putExtra ("totalSupply",organizedData[i][14]);
+                symbSearch.putExtra ("marketCap",organizedData[i][5]);
+                symbSearch.putExtra ("marketCapRank",organizedData[i][6]);
+                symbSearch.putExtra ("marketCapChange24h",organizedData[i][10]);
+                context.startActivity(symbSearch);
+            }
+        }
     }
 
     private void testSymbSearch() {
