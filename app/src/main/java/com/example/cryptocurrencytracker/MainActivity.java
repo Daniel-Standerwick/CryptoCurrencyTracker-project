@@ -100,6 +100,18 @@ public class MainActivity extends AppCompatActivity {
                 Intent symbSearch;
                 symbSearch = new Intent (getApplicationContext (), DetailsAboutACrypto.class);
                 symbSearch.putExtra ("name",rawOrganizedData[i][2]);
+                symbSearch.putExtra ("currentPrice",organizedData[i][4]);
+                symbSearch.putExtra ("high24h",organizedData[i][7]);
+                symbSearch.putExtra ("ath",organizedData[i][15]);
+                symbSearch.putExtra ("athdate",organizedData[i][17]);
+                symbSearch.putExtra ("roi",organizedData[i][18]);
+                symbSearch.putExtra ("lastUpdated",organizedData[i][19]);
+                symbSearch.putExtra ("low24h",organizedData[i][8]);
+                symbSearch.putExtra ("priceChange24h",organizedData[i][9]);
+                symbSearch.putExtra ("totalSupply",organizedData[i][14]);
+                symbSearch.putExtra ("marketCap",organizedData[i][5]);
+                symbSearch.putExtra ("marketCapRank",organizedData[i][6]);
+                symbSearch.putExtra ("marketCapChange24h",organizedData[i][10]);
                 startActivity(symbSearch,stringsToSend);
             }
         }
