@@ -1,6 +1,7 @@
 package com.example.cryptocurrencytracker;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -14,15 +15,18 @@ import java.lang.reflect.Array;
 
 public class MainActivity extends AppCompatActivity {
 
+    private Bundle stringsToSend;
     private Button Search;
     private EditText Symbol;
     private Resources res;
     public static String[] dataToDisplay;
     public static String[][] organizedData;
+    public static String[][] rawOrganizedData;
     public static RecyclerView returnView;
     public static RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
 
+    private String typedSym;
     private String id;
     private String symbol;
     private String name;
@@ -44,12 +48,16 @@ public class MainActivity extends AppCompatActivity {
     private String roi;
     private String lastUpdated;
 
+    Intent searchIntent;
+
 
     @SuppressLint("WrongThread")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_main);
+
+        stringsToSend = new Bundle ();
 
         res = getResources ();
         Search = (Button) findViewById (R.id.search_button);
@@ -77,12 +85,24 @@ public class MainActivity extends AppCompatActivity {
         Search.setOnClickListener (new View.OnClickListener ( ) {
             @Override
             public void onClick(View v) {
-
+                testSymbSearch();
             }
         });
 
 
 
+    }
+
+    private void testSymbSearch() {
+        typedSym = Symbol.getText().toString ();
+        for(int i = 0; i < dataToDisplay.length; i++) {
+            if (rawOrganizedData[i][1].equals (typedSym)) {
+                stringsToSend.putString (name, rawOrganizedData[i][2]);
+                Intent symbSearch;
+                symbSearch = new Intent (getApplicationContext (), DetailsAboutACrypto.class);
+                startActivity(symbSearch,stringsToSend);
+            }
+        }
     }
 
     public static void setmAdapter(){
@@ -123,6 +143,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         organizedData = new String[data.length][arrayToLoad.length];
+        rawOrganizedData = new String[data.length][arrayToLoad.length];
         toReturn = new String[data.length];
         String coinInfo;
         for(int i = 0; i < data.length; i++)
@@ -133,6 +154,7 @@ public class MainActivity extends AppCompatActivity {
                 int end;
                 if (coinInfo.contains (",")){
                     end = coinInfo.indexOf (",");
+                    rawOrganizedData[i][j] = coinInfo.substring (0, (end));
                     organizedData[i][j] = arrayToLoad[j] + " " +
                             coinInfo.substring (0, (end));
                     coinInfo = coinInfo.substring (end+1);
