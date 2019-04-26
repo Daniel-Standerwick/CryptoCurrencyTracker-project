@@ -97,9 +97,9 @@ public class MainActivity extends AppCompatActivity {
         typedSym = Symbol.getText().toString ();
         for(int i = 0; i < dataToDisplay.length; i++) {
             if (rawOrganizedData[i][1].equals (typedSym)) {
-                stringsToSend.putString (name, rawOrganizedData[i][2]);
                 Intent symbSearch;
                 symbSearch = new Intent (getApplicationContext (), DetailsAboutACrypto.class);
+                symbSearch.putExtra ("name",rawOrganizedData[i][2]);
                 startActivity(symbSearch,stringsToSend);
             }
         }
